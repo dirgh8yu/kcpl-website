@@ -232,3 +232,31 @@ address { font-style:normal; }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
 
 .button:disabled { opacity:.55; cursor:wait; }
+
+/* Enquiry operations extend KCPL's existing editorial grid. */
+.staff-desk { padding-block: 64px 100px; }
+.staff-heading { display:flex; justify-content:space-between; gap:24px; align-items:start; margin-bottom:40px; }
+.staff-heading h1 { font-size:clamp(2.5rem,5vw,4.5rem); letter-spacing:-.045em; line-height:1.05; }
+.desk-filters { display:flex; align-items:end; flex-wrap:wrap; gap:16px; border-block:1px solid #ccc; padding-block:24px; margin-bottom:32px; }
+.desk-filters .form-field { flex:1; min-width:200px; margin:0; }
+.desk-workspace { display:grid; grid-template-columns:minmax(250px,.85fr) minmax(0,1.15fr); gap:40px; }
+.desk-row { display:flex; flex-direction:column; gap:10px; padding:24px 16px; width:100%; text-align:left; border:0; border-bottom:1px solid #ccc; background:transparent; cursor:pointer; font:inherit; }
+.desk-row strong { font-size:1.2rem; font-weight:400; }
+.desk-row.is-selected { background:#fff; box-shadow:inset 3px 0 #dc143c; }
+.desk-detail { padding:28px; background:white; min-width:0; align-self:start; }
+.desk-detail h2 { font-size:2rem; }
+.desk-detail h3 { margin-block:32px 12px; }
+.desk-detail p,.desk-detail li { overflow-wrap:anywhere; }
+.desk-fields { margin-block:24px; }
+.desk-fields>div { padding-block:12px; border-bottom:1px solid #eee; display:grid; grid-template-columns:1fr 1.5fr; gap:16px; }
+.desk-fields dt { color:#555; font-size:.875rem; }
+.desk-fields dd { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.desk-history { padding-left:20px; }
+.desk-history li { margin-bottom:24px; }
+.desk-history p { white-space:pre-wrap; }
+.desk-reference,.receipt-reference { overflow-wrap:anywhere; }
+.consent-line { display:flex; gap:12px; align-items:start; }
+.consent-line input { width:20px; height:20px; flex-shrink:0; margin-top:4px; accent-color:#dc143c; }
+.form-trap { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+@media(max-width:800px) { .desk-workspace { grid-template-columns:1fr; gap:28px; } .desk-detail { padding:20px; } .staff-heading { flex-direction:column; } }
+@media(max-width:450px) { .desk-fields>div { grid-template-columns:1fr; gap:4px; } }

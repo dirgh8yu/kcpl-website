@@ -45,7 +45,7 @@ test('Internal navigation and service fragments resolve', async () => {
 
 test('Unhydrated enquiry controls cannot leak details through native GET submission', async () => {
   const html = await (await fetch(origin + '/contact?service=project-cargo')).text();
-  assert.equal((html.match(/<fieldset disabled=""/g) || []).length, 3);
+  assert.equal((html.match(/<fieldset disabled=""/g) || []).length, 4);
   assert.match(html, /<button type="submit"[^>]*disabled=""/);
   assert.match(html, /<noscript>.*mailto:/s);
   assert.match(html, /For project cargo/);

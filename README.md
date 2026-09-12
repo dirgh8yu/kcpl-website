@@ -1,48 +1,35 @@
-# Kapileshwor Cargo — public website V1
+# Kapileshwor Cargo public website
 
-A new Next.js App Router, TypeScript and Tailwind website. No code or architecture from the older KCPL repository is used.
+Private review build. Do not merge to main or launch publicly without KCPL approval.
 
-## Local preview
+## Runtime
 
-Node.js 22 or newer:
+Next.js App Router / TypeScript / Tailwind, with the Sites-supported Vinext build adapter for Cloudflare Workers. Existing KCPL public pages and brand assets are retained. D1 stores enquiries, attachment metadata, follow-up history and short-lived abuse counters; R2 stores private attachment bytes. No customer data belongs in Git.
 
-```sh
-git clone --branch build/v1-public-website https://github.com/dirgh8yu/kcpl-website.git
-cd kcpl-website
-npm ci
-npm run dev
-```
+Use the declared pnpm version and lockfile. Build with the Sites build helper or `npm run build`; run `npx tsc --noEmit` and `npm run lint`. Generate schema-only migrations with `npm run db:generate`. Applied migrations are immutable.
 
-Open http://localhost:3000. No hosting account or secrets are needed.
+## Configuration
 
-```sh
-npm run lint
-npm run typecheck
-npm run build
-npm run test:smoke
-npm start
-```
+Configure runtime values in Sites, never in committed files:
 
-## Pages and content
+- SITE_ORIGIN: exact HTTPS origin, without a trailing slash.
+- STAFF_EMAILS: comma-separated authorised staff accounts; empty denies all access.
+- RATE_LIMIT_SECRET: a cryptographically random secret for short-lived network hashes.
+- NEXT_PUBLIC_SITE_URL: canonical review/production origin.
+- SITE_INDEXABLE: false during review.
 
-Home, Services, Project Cargo, About, Network / Partners, Contact / Quote, and Privacy Notice. Public business copy lives in `content/`. Official primary/reversed logos and Gateway K SVG exports live in `public/brand/`. These came only from the Figma logo masters; no Figma layouts were reused.
+The hosting manifest keeps logical DB and BUCKET bindings only. Sites owns their provisioning. Hosted authentication depends on dispatch-verified ChatGPT identity headers. Do not run this server directly on an untrusted public ingress that accepts caller-supplied identity headers. Any hosting migration requires a verified authentication adapter.
 
-The enquiry builder prepares an editable email draft and offers a clipboard fallback. It does not transmit enquiries to a backend and never claims they were submitted. Form controls remain disabled until hydration to prevent native form submissions exposing enquiry data in a URL. Direct email works without JavaScript.
+## Enquiry workflow
 
-## Review status
+/contact submits validated multipart data. Receipt references are returned only after database storage succeeds. UUID idempotency keys prevent duplicate saves on identical retries. Three attachments maximum, each 2 MB, PDF/JPEG/PNG signatures only. Download endpoints require staff authorisation and force download; files are not malware-scanned. Intake limits are ten attempts per network per hour, plus bounded bodies, a honeypot and same-origin checks. This is baseline abuse protection, not a substitute for production monitoring.
 
-Production build, TypeScript and lint pass. HTTP checks found one H1 per page, working internal routes and fragment links, and noindex review metadata. Browser visual and interactive checks could not run in the authoring environment: its browser blocks localhost. Those checks remain required at 375px, tablet and desktop widths.
+/staff provides search, status filters, pagination, cargo details, private documents, notes and status history. Optimistic versions reject stale edits. No automated messages, carrier tracking, booking confirmations or price calculations are claimed.
 
-Photographs are provisional Unsplash references, centrally listed in `content/images.ts`. Downloading and visually verifying their final crops was blocked in the authoring environment. Five candidates are wired into layouts with truthful illustrative captions and a graceful load-error fallback. This is not the final approved photo selection. Before approving V1, inspect each referenced photograph for relevance, quality and branding, then replace weak images. Project cargo especially needs a verified heavy-equipment image. Do not present stock as a KCPL-owned vehicle, site or completed project.
+## Verification
 
-## Before production
+After a build, apply generated migrations to the local Worker database using the starter's documented Wrangler command. `node tests/run-worker.mjs` starts a loopback-only Worker and exercises intake, duplicate prevention, authentication, documents, concurrent edits, limits and public page smoke checks. It uses synthetic local data only. Never run mutation tests against production.
 
-- Finish photography and rendered desktop/mobile review; verify the enquiry draft, copying, keyboard navigation and reduced-motion behavior in a browser.
-- Confirm the enquiry mailbox and current business address. The mailbox appears in the company profile; the inconsistent office floor is intentionally omitted.
-- Confirm any additional project details before adding results, dates, weights or third-party names. Current project references are company-reported logistics roles.
-- Set `NEXT_PUBLIC_SITE_URL` to the confirmed canonical HTTPS origin. This enables canonical URLs and sitemap entries. Review builds default to localhost metadata and stay noindex.
-- Set `SITE_INDEXABLE=true` only for the approved production build. Review builds disallow crawling.
-- Confirm hosting-specific request logging and retention, and complete the Privacy Notice accordingly. Review again if adding a hosted form or analytics.
-- Merge, deployment and DNS changes require the owner's separate approval. This repository contains no deployment workflow or production configuration.
+## Before real customer use
 
-No confidential operational correspondence or source research is included.
+Confirm staff access, enquiry ownership and follow-up procedure; configure a verified transactional email provider if notifications are required; establish retention/deletion and recovery procedures; review attachment scanning and public abuse controls; complete phone/browser review. Use demonstration data in the private review site. Public launch, DNS and GitHub main remain unchanged.
