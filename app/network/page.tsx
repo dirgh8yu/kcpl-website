@@ -1,0 +1,11 @@
+import { Container, PageIntro, Eyebrow, TextLink } from '@/components/ui';
+import { ResponsiveImage } from '@/components/responsive-image';
+import { NetworkDirectory, QuoteCTA } from '@/components/sections';
+import { pageMetadata } from '@/lib/metadata';
+export const metadata = pageMetadata('Network & Overseas Partners', 'Your Nepal-side logistics counterpart for regional India and China freight coordination, customs, inland transport and international forwarding handovers.', '/network');
+export default function NetworkPage() {
+  return <><PageIntro label="Network / Partners" title={<>International connections.<br />Nepal-side knowledge.</>}><p>A Kathmandu-based counterpart for freight forwarders, importers and exporters coordinating cargo to and from Nepal.</p></PageIntro>
+    <section className="network-section"><Container className="editorial-grid"><div><Eyebrow>Operating coverage</Eyebrow><h2>Connected through<br />the shipment plan.</h2><p className="muted measure">The right gateway depends on the origin, the cargo and the destination. KCPL coordinates the relevant freight and customs stages with regional and overseas counterparts.</p><p className="small muted measure">Kathmandu is KCPL’s base. Regional gateways and overseas counterparts shown here are operating connections, not KCPL branch offices or scheduled services.</p></div><NetworkDirectory /></Container></section>
+    <Container><ResponsiveImage image="road" className="wide-photo" caption="Road freight in Nevada, United States. Illustrative stock; not a Nepal route." /></Container>
+    <section className="section"><Container className="editorial-grid"><div><Eyebrow>For overseas freight forwarders</Eyebrow><h2>Your counterpart<br />on the ground.</h2></div><div><p className="service-lead">When your shipment needs Nepal-side coordination, KCPL can discuss customs requirements, inland transport and final delivery arrangements as part of the wider freight scope.</p><ul className="plain-list"><li>Destination and customs-document coordination</li><li>Border, port-to-Nepal and inland movement arrangements</li><li>Project cargo and difficult-access planning</li><li>Clear responsibilities between origin, transit and destination parties</li></ul><TextLink href="/contact?service=partner-enquiry">Discuss Nepal-side support</TextLink></div></Container></section><QuoteCTA /></>;
+}
