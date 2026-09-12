@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+/* eslint-disable @next/next/no-html-link-for-pages -- Use full-page navigation in private embedded previews. */
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -27,11 +27,11 @@ export function Header() {
     return () => { media.removeEventListener('change', close); document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', outside); };
   }, [open]);
   return <header className="site-header"><div className="container header-inner">
-    <Link href="/" aria-label="Kapileshwor Cargo — home" className="logo-link" onClick={() => setOpen(false)}><Image src="/brand/kcpl-primary.svg" alt="Kapileshwor Cargo Pvt. Ltd." width={605} height={128} priority /></Link>
+    <a href="/" aria-label="Kapileshwor Cargo — home" className="logo-link" onClick={() => setOpen(false)}><Image src="/brand/kcpl-primary.svg" alt="Kapileshwor Cargo Pvt. Ltd." width={605} height={128} priority /></a>
     <button className="menu-toggle" type="button" ref={toggle} aria-controls="primary-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}<span aria-hidden="true">{open ? '−' : '+'}</span></button>
     <nav id="primary-navigation" aria-label="Primary navigation" ref={nav} className={`primary-nav ${open ? 'is-open' : ''}`}>
-      {navigation.map(item => <Link key={item.href} href={item.href} aria-current={path === item.href ? 'page' : undefined} onClick={() => setOpen(false)}>{item.label}</Link>)}
-      <Link href="/contact" className="header-quote" aria-current={path === '/contact' ? 'page' : undefined} onClick={() => setOpen(false)}>Request a quote<Arrow /></Link>
+      {navigation.map(item => <a key={item.href} href={item.href} aria-current={path === item.href ? 'page' : undefined} onClick={() => setOpen(false)}>{item.label}</a>)}
+      <a href="/contact" className="header-quote" aria-current={path === '/contact' ? 'page' : undefined} onClick={() => setOpen(false)}>Request a quote<Arrow /></a>
     </nav>
   </div></header>;
 }

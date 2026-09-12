@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
@@ -8,10 +7,10 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={diagonal ? 'M6 18 18 6M6 6h12v12' : 'M4 12h16m-6-6 6 6-6 6'} stroke="currentColor" strokeWidth="1.5" /></svg>;
 }
 export function Button({ children, href, secondary = false }: { children: ReactNode; href: string; secondary?: boolean }) {
-  return <Link className={`button ${secondary ? 'button-secondary' : ''}`} href={href}>{children}<Arrow /></Link>;
+  return <a className={`button ${secondary ? 'button-secondary' : ''}`} href={href}>{children}<Arrow /></a>;
 }
 export function TextLink({ children, href }: { children: ReactNode; href: string }) {
-  return <Link className="text-link" href={href}>{children}<Arrow diagonal /></Link>;
+  return <a className="text-link" href={href}>{children}<Arrow diagonal /></a>;
 }
 export function Eyebrow({ children, number }: { children: ReactNode; number?: string }) {
   return <p className="eyebrow">{number && <span className="section-number">{number} /</span>}{children}</p>;

@@ -3,6 +3,7 @@ import { useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { services } from '@/content/services';
 import { company } from '@/content/company';
 import { Arrow } from './ui';
+import { createRequestId } from '@/lib/request-id';
 
 type FieldProps = { name: string; label: string; required?: boolean; type?: string; placeholder?: string; autoComplete?: string; wide?: boolean; maxLength?: number };
 function Field({ name, label, required = false, type = 'text', placeholder, autoComplete, wide = false, maxLength = 180 }: FieldProps) {
@@ -25,10 +26,10 @@ export function EnquiryForm({ initialService }: { initialService: string }) {
     event.preventDefault();
     if (busy || reference) return;
     const data = new FormData(event.currentTarget);
-    requestId.current ||= crypto.randomUUID();
-    data.set('requestId', requestId.current);
     setBusy(true); setStatus('Sending your enquiry…');
     try {
+      requestId.current ||= createRequestId();
+      data.set('requestId', requestId.current);
       const response = await fetch('/api/enquiries', { method: 'POST', body: data });
       const result = await response.json() as { reference?: string; error?: string };
       if (!response.ok || !result.reference) throw new Error(result.error ?? 'Receipt could not be confirmed. Please retry.');
