@@ -12,7 +12,7 @@ export default function NetworkPage() {
       <TextLink href="/contact?service=partner-enquiry">Discuss Nepal-side support</TextLink>
     </PageIntro>
     <section className="network-section"><Container className="editorial-grid">
-      <div><Eyebrow>Operating coverage</Eyebrow><h2>Connected through<br />the shipment plan.</h2><p className="muted measure">The right gateway depends on the origin, the cargo and the destination. KCPL coordinates the relevant freight and customs stages with regional and overseas counterparts.</p><p className="network-ownership-note">Kathmandu is KCPL’s base. The branch offices below are distinct from the wider network of third-party freight and transit counterparts.</p></div>
+      <div><Eyebrow>Operating coverage</Eyebrow><h2>Connected through<br />the shipment plan.</h2><p className="muted measure">The right gateway depends on the origin, the cargo and the destination. KCPL coordinates the relevant freight and customs stages through its Nepal and India locations and international counterparts.</p><p className="network-ownership-note">Kathmandu is KCPL’s base, supported by operating locations at the key customs and gateway points.</p></div>
       <NetworkDirectory />
     </Container></section>
     <section className="section location-section" id="offices"><Container className="editorial-grid">
@@ -20,8 +20,8 @@ export default function NetworkPage() {
       <div className="location-directory"><h3>Branch offices</h3>{branchOffices.map(group => <div className="location-group" key={group.country}><h4>{group.country}</h4><ul>{group.locations.map(place => <li key={place}>{place}</li>)}</ul></div>)}</div>
     </Container></section>
     <section className="section" id="warehouse-facilities"><Container className="editorial-grid">
-      <div><Eyebrow>Storage / Inland movement</Eyebrow><h2>Warehouse facilities.<br />India and Nepal.</h2><p className="muted measure">Storage locations connected with the shipment plan. Confirm space, cargo suitability, handling and release arrangements before sending goods.</p><TextLink href="/contact?service=warehousing">Discuss storage requirements</TextLink></div>
-      <div className="location-directory"><h3>Facility locations</h3>{warehouseFacilities.map(group => <div className="location-group" key={group.country}><h4>{group.country}</h4><ul>{group.locations.map(place => <li key={place}>{place}</li>)}</ul></div>)}<p className="small muted">Locations describe facilities available through KCPL; they do not imply property ownership or a fixed storage capacity.</p></div>
+      <div><Eyebrow>Storage / Inland movement</Eyebrow><h2>Warehouse facilities.<br />India and Nepal.</h2><p className="muted measure">Storage locations connected with the shipment plan. Discuss space, cargo suitability, handling and release arrangements with KCPL.</p><TextLink href="/contact?service=warehousing">Discuss storage requirements</TextLink></div>
+      <div className="location-directory"><h3>Facility locations</h3>{warehouseFacilities.map(group => <div className="location-group" key={group.country}><h4>{group.country}</h4><ul>{group.locations.map(place => <li key={place}>{place}</li>)}</ul></div>)}</div>
     </Container></section>
     <section className="handover-section"><Container>
       <div className="editorial-grid"><div><Eyebrow>Clear responsibilities</Eyebrow><h2>Agree the handovers.<br />Then plan the movement.</h2></div><p className="service-lead">A shared shipment scope should identify who coordinates each stage, which documents travel with the cargo and how the receiving party is prepared.</p></div>

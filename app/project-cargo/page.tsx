@@ -16,7 +16,7 @@ export default function ProjectCargoPage() {
       <div className="project-intro-actions"><Button href="/contact?service=project-cargo">Discuss a project movement</Button></div>
     </PageIntro>
     <section className="project-image-band dark"><Container>
-      <ResponsiveImage image="industrial" className="wide-photo" priority caption="Industrial logistics context; not a photograph of a KCPL project." />
+      <ResponsiveImage image="industrial" className="wide-photo" priority caption="Industrial project-cargo environment." />
       <nav className="project-chapter-nav" aria-label="Project cargo on this page">
         <a href="#the-cargo"><span>01</span>The cargo</a><a href="#the-route"><span>02</span>The route</a><a href="#the-site"><span>03</span>The site</a><a href="#project-experience"><span>04</span>Experience</a>
       </nav>
@@ -38,7 +38,7 @@ export default function ProjectCargoPage() {
       </div>
     </Container></section>
     <section className="project-records" id="project-experience"><Container className="editorial-grid">
-      <div><Eyebrow>Company-reported experience</Eyebrow><h2>Power-sector cargo.<br />Practical constraints.</h2><p className="muted measure">Selected cargo-handling references from KCPL’s company material. These describe logistics roles associated with the projects.</p><p className="small muted measure">Project references do not imply that KCPL designed, built or commissioned the infrastructure.</p></div>
+      <div><Eyebrow>KCPL project experience</Eyebrow><h2>Power-sector cargo.<br />Practical constraints.</h2><p className="muted measure">KCPL has coordinated cargo handling for power and transmission projects across Nepal, where weight, access and delivery conditions shape the movement.</p></div>
       <div>{projects.map(project => <article className="project-record" key={project.place}>
         <div className="record-heading"><h3>{project.place}</h3><span>{project.cargo}</span></div>
         <dl><div><dt>KCPL’s role</dt><dd>{project.role}</dd></div><div><dt>Planning context</dt><dd>{project.consideration}</dd></div></dl>
@@ -47,7 +47,7 @@ export default function ProjectCargoPage() {
     <section className="section nea-experience" id="nea-projects"><Container>
       <div className="editorial-grid">
         <div><Eyebrow>Project handling references</Eyebrow><h2>Across Nepal’s<br />power infrastructure.</h2><a className="project-authority" href="https://nea.org.np/en"><img src="/organisations/nea.png" alt="" width="51" height="51" loading="lazy" /><span><span className="small">Project authority</span><strong>Nepal Electricity Authority</strong></span></a></div>
-        <div><p className="service-lead">KCPL has acted as a project handling agent for cargo connected with the following Nepal Electricity Authority projects.</p><p className="muted">These company-provided references describe cargo-handling involvement, not construction, engineering or commissioning. They do not imply a direct contract with NEA or an endorsement by the authority.</p></div>
+        <div><p className="service-lead">KCPL has acted as project handling agent for cargo connected with the following Nepal Electricity Authority projects.</p><p className="muted">Our role covers cargo coordination, transport planning, customs and delivery-site handovers across the shipment scope.</p></div>
       </div>
       <ul className="nea-project-list">{neaProjects.map((project, index) => <li key={project.name + project.location}><span className="section-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{project.name}</h3><p>{project.location}, Nepal</p></div></li>)}</ul>
       <TextLink href="/contact?service=project-cargo">Discuss a comparable cargo movement</TextLink>

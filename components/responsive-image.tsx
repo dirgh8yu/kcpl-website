@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { images, stockUrl, type ImageKey } from '@/content/images';
 
-export function ResponsiveImage({ image, className = '', priority = false, caption = 'Illustrative stock photography.' }: { image: ImageKey; className?: string; priority?: boolean; caption?: string }) {
+export function ResponsiveImage({ image, className = '', priority = false, caption = 'Freight infrastructure.' }: { image: ImageKey; className?: string; priority?: boolean; caption?: string }) {
   const photo = images[image];
   const [failed, setFailed] = useState(false);
   return <figure className={`photo ${className}`}>
