@@ -26,7 +26,7 @@ export function Header() {
     document.addEventListener('pointerdown', outside);
     return () => { media.removeEventListener('change', close); document.removeEventListener('keydown', onKey); document.removeEventListener('pointerdown', outside); };
   }, [open]);
-  return <header className="site-header"><div className="container header-inner">
+  return <header className="site-header" onBlur={event => { if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}><div className="container header-inner">
     <a href="/" aria-label="Kapileshwor Cargo — home" className="logo-link" onClick={() => setOpen(false)}><Image src="/brand/kcpl-primary.svg" alt="Kapileshwor Cargo Pvt. Ltd." width={605} height={128} priority /></a>
     <button className="menu-toggle" type="button" ref={toggle} aria-controls="primary-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}<span aria-hidden="true">{open ? '−' : '+'}</span></button>
     <nav id="primary-navigation" aria-label="Primary navigation" ref={nav} className={`primary-nav ${open ? 'is-open' : ''}`}>

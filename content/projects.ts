@@ -10,3 +10,22 @@ export const planning = [
   { title: 'The route', intro: 'Every constraint on the way can change the plan.', items: ['Road width, gradients and surface conditions', 'Bridges, turning radii and route restrictions', 'Border procedures and customs coordination', 'Difficult terrain and remote delivery locations'] },
   { title: 'The delivery site', intro: 'Plan for the final approach before the cargo moves.', items: ['Site entrance and access clearances', 'Receiving and unloading arrangements', 'Positioning requirements and agreed responsibilities', 'Site readiness and coordination with the receiving team'] },
 ];
+
+// Project names and locations supplied by KCPL for public use.
+// The stated role is project cargo handling, not infrastructure delivery.
+export const neaProjects = [
+  { name: 'Trishuli 3B Hub', location: 'Santi Bazar, Nuwakot' },
+  { name: 'Chilime–Trishuli 220 kV Transmission Line Project', location: 'Rasuwa' },
+  { name: 'Udipur–Bharatpur 220 kV Transmission Line Project', location: 'Lamjung' },
+  { name: 'Kathmandu Valley Substation Project', location: 'Chovar, Thimi and Phutung' },
+  { name: 'Chilime AIS and GIS Substation', location: 'Chilime, Rasuwa' },
+  { name: 'Grid Solar and Energy Efficiency Project', location: 'Ramechhap, Sindhuli and Dolakha' },
+  { name: 'Ramechhap Garjyang & Khimti Substation and Transmission Project', location: 'Garjyang, Ramechhap' },
+  { name: 'Grid Solar and Energy Efficiency Project', location: 'Kapilvastu, Gulmi and Arghakhachi' },
+  { name: 'Khudi 132 kV Substation and Transmission Line Project', location: 'Lamjung' },
+  { name: 'Manang 220 kV Transmission Line and Substation Project', location: 'Manang' },
+  { name: 'Amlekhgunj 132 kV Substation Project', location: 'Bara' },
+  { name: 'New Patan Substation Project', location: 'Lalitpur' },
+  { name: 'Karnali Substation and Distribution Project', location: 'Humla and Mugu' },
+  { name: 'Solar Project', location: 'Jumla and Humla' },
+];

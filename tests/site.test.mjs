@@ -45,10 +45,11 @@ test('Internal navigation and service fragments resolve', async () => {
 
 test('Unhydrated enquiry controls cannot leak details through native GET submission', async () => {
   const html = await (await fetch(origin + '/contact?service=project-cargo')).text();
-  assert.equal((html.match(/<fieldset disabled=""/g) || []).length, 4);
+  assert.equal((html.match(/<fieldset disabled=""/g) || []).length, 3);
+  assert.match(html, /<form[^>]*method="post"/);
   assert.match(html, /<button type="submit"[^>]*disabled=""/);
   assert.match(html, /<noscript>.*mailto:/s);
-  assert.match(html, /For project cargo/);
+  assert.match(html, /Plan around each piece/);
 });
 
 test('Review metadata and robots discourage indexing', async () => {
@@ -58,4 +59,40 @@ test('Review metadata and robots discourage indexing', async () => {
   const robots = await (await fetch(origin + '/robots.txt')).text();
   assert.match(robots, /Disallow: \//);
   assert.equal((await fetch(origin + '/sitemap.xml')).status, 200);
+});
+
+test('Project checklist downloads and service-specific guidance are available', async () => {
+  const response = await fetch(origin + '/project-cargo-brief.txt');
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get('content-type'), /text\/plain/);
+  const brief = await response.text();
+  assert.match(brief, /THE CARGO/);
+  assert.match(brief, /THE ROUTE/);
+  assert.match(brief, /THE SITE/);
+  assert.match(brief, /not a quotation, booking or engineering assessment/);
+  for (const [service, heading] of [['air-freight', 'Preparing an air-freight enquiry'], ['project-cargo', 'Plan around each piece'], ['partner-enquiry', 'Define the Nepal-side handover']]) {
+    const html = await (await fetch(origin + '/contact?service=' + service)).text();
+    assert.ok(html.includes(heading), 'Missing service guidance: ' + service);
+    assert.match(html, /Information to prepare/);
+  }
+});
+
+test('Company-provided recognition, project references and facilities are published with scoped roles', async () => {
+  const about = documents.get('/about');
+  assert.match(about, /Export Excellence Award/);
+  for (const year of ['2022', '2023', '2024', '2025']) assert.ok(about.includes(year));
+  for (const association of ['Lalitpur Chamber of Commerce and Industry', 'Nepal Freight Forwarders Association', 'CPL Network']) assert.ok(about.includes(association));
+  const projects = documents.get('/project-cargo');
+  assert.equal((projects.match(/<li><span class="section-number">/g) || []).length, 14);
+  assert.match(projects, /not construction, engineering or commissioning/);
+  assert.match(projects, /New Patan Substation Project/);
+  assert.match(projects, /Jumla and Humla/);
+  const network = documents.get('/network');
+  for (const location of ['Bhairahawa', 'Delhi', 'Kolkata', 'Raxaul', 'Surkhet', 'Thimi']) assert.ok(network.includes(location));
+  assert.match(network, /do not imply property ownership/);
+  for (const asset of ['cpl-network.png', 'nea.png']) {
+    const response = await fetch(origin + '/organisations/' + asset);
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get('content-type'), /image\/png/);
+  }
 });

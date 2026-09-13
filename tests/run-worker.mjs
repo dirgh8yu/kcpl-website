@@ -7,6 +7,8 @@ try {
   let ready = false;
   for(let i=0;i<100;i++) { try { if ((await fetch(origin)).ok) { ready=true; break; } } catch {} await setTimeout(200); }
   if (!ready) throw new Error('Worker did not start: '+logs.slice(-3000));
+  // Allow the local dev worker's initial reload to settle before mutation tests.
+  await setTimeout(750);
   const child = spawn(process.execPath,['--test','tests/backend.test.mjs','tests/site.test.mjs'], { env:{...process.env,TEST_BASE_URL:origin},stdio:'inherit' });
   process.exitCode = await new Promise(resolve => child.on('exit',resolve));
   if (process.exitCode) console.error(logs.slice(-4000));

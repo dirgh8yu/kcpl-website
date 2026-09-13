@@ -1,6 +1,6 @@
 # Kapileshwor Cargo public website
 
-Private review build. Do not merge to main or launch publicly without KCPL approval.
+Development/review build. The Sites review URL is publicly accessible with KCPL approval. Do not merge to main or change KCPL's production domain without separate approval.
 
 ## Runtime
 
@@ -32,4 +32,4 @@ After a build, apply generated migrations to the local Worker database using the
 
 ## Before real customer use
 
-Confirm staff access, enquiry ownership and follow-up procedure; configure a verified transactional email provider if notifications are required; establish retention/deletion and recovery procedures; review attachment scanning and public abuse controls; complete phone/browser review. Use demonstration data in the private review site. Public launch, DNS and GitHub main remain unchanged.
+Confirm staff access, enquiry ownership and follow-up procedure; configure a verified transactional email provider if notifications are required; establish retention/deletion and recovery procedures; review attachment scanning and public abuse controls; complete authenticated hosted workflow review. Use demonstration data in the review site. KCPL's existing production website, DNS and GitHub main remain unchanged.
