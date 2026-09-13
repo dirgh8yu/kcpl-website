@@ -12,7 +12,7 @@ export default function HomePage() {
         <div className="hero-title-field"><h1><span className="hero-title-line">FROM NEPAL.</span><span className="hero-title-line hero-title-destination">TO THE WORLD.</span></h1><div className="hero-rule" aria-hidden="true"><span /></div></div>
         <div className="hero-copy"><p>International freight.<br />Practical execution in Nepal.</p><p className="hero-description">Air, ocean and cross-border cargo, with customs and final delivery considered from the start.</p><div className="hero-actions"><Button href="/contact">Request a freight quote</Button><TextLink href="/services">Explore services</TextLink></div></div>
       </div>
-      <ResponsiveImage image="terminal" className="hero-photo" priority caption="International freight infrastructure. Illustrative stock." />
+      <ResponsiveImage image="terminal" className="hero-photo" priority caption="International freight infrastructure." />
       <div className="hero-bottom"><span>Kapileshwor Cargo Pvt. Ltd.</span><span>International connections. Nepal-side knowledge.</span></div>
     </Container></section>
     <ServiceIndex />

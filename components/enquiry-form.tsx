@@ -153,7 +153,7 @@ export function EnquiryForm({ initialService }: { initialService: string }) {
       if (errors[id]) { const checked = validate(form); setErrors(current => { const next = { ...current }; if (checked[id]) next[id] = checked[id]; else delete next[id]; return next; }); }
     }}>
       <p className="form-explanation">Fields marked * are required. Share the details you know; leave unconfirmed weights and dimensions blank.</p>
-      {!hydrated && <p role="status" className="review-notice">Loading enquiry form… You can also use the direct email link above.</p>}
+      {!hydrated && <p role="status" className="form-loading">Loading enquiry form… You can also use the direct email link above.</p>}
       {!!Object.keys(errors).length && <div className="error-summary" ref={errorSummary} tabIndex={-1} aria-labelledby="error-heading"><h2 id="error-heading">Check these details</h2><ul>{Object.entries(errors).map(([id, message]) => <li key={id}><a href={'#' + id} onClick={e => { e.preventDefault(); document.getElementById(id)?.focus(); }}>{message}</a></li>)}</ul></div>}
       <fieldset disabled={disabled}><legend><span>01</span>The shipment</legend><div className="form-grid">
         <Field name="Origin" label="Origin city / country" placeholder="City, country" required />

@@ -84,12 +84,12 @@ test('Company-provided recognition, project references and facilities are publis
   for (const association of ['Lalitpur Chamber of Commerce and Industry', 'Nepal Freight Forwarders Association', 'CPL Network']) assert.ok(about.includes(association));
   const projects = documents.get('/project-cargo');
   assert.equal((projects.match(/<li><span class="section-number">/g) || []).length, 14);
-  assert.match(projects, /not construction, engineering or commissioning/);
+  assert.match(projects, /acted as project handling agent/);
   assert.match(projects, /New Patan Substation Project/);
   assert.match(projects, /Jumla and Humla/);
   const network = documents.get('/network');
   for (const location of ['Bhairahawa', 'Delhi', 'Kolkata', 'Raxaul', 'Surkhet', 'Thimi']) assert.ok(network.includes(location));
-  assert.match(network, /do not imply property ownership/);
+  assert.match(network, /Facility locations/);
   for (const asset of ['cpl-network.png', 'nea.png']) {
     const response = await fetch(origin + '/organisations/' + asset);
     assert.equal(response.status, 200);

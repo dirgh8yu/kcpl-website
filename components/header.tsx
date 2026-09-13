@@ -28,7 +28,7 @@ export function Header() {
   }, [open]);
   return <header className="site-header" onBlur={event => { if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}><div className="container header-inner">
     <a href="/" aria-label="Kapileshwor Cargo — home" className="logo-link" onClick={() => setOpen(false)}><Image src="/brand/kcpl-primary.svg" alt="Kapileshwor Cargo Pvt. Ltd." width={605} height={128} priority /></a>
-    <button className="menu-toggle" type="button" ref={toggle} aria-controls="primary-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}<span aria-hidden="true">{open ? '−' : '+'}</span></button>
+    <button className="menu-toggle" type="button" ref={toggle} aria-controls="primary-navigation" aria-expanded={open} aria-label={open ? 'Close navigation menu' : 'Open navigation menu'} onClick={() => setOpen(current => !current)}><span className="menu-toggle-label">{open ? 'Close' : 'Menu'}</span><span className="menu-toggle-icon" aria-hidden="true">{open ? '−' : '+'}</span></button>
     <nav id="primary-navigation" aria-label="Primary navigation" ref={nav} className={`primary-nav ${open ? 'is-open' : ''}`}>
       {navigation.map(item => <a key={item.href} href={item.href} aria-current={path === item.href ? 'page' : undefined} onClick={() => setOpen(false)}>{item.label}</a>)}
       <a href="/contact" className="header-quote" aria-current={path === '/contact' ? 'page' : undefined} onClick={() => setOpen(false)}>Request a quote<Arrow /></a>
